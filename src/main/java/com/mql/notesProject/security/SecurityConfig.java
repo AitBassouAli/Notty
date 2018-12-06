@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//donner les permission a la page login et register user
 		http.authorizeRequests().antMatchers("/login/**","/register/**").permitAll();
         //en indique a spring que toutes les requetes Post il font que l'utilisateur soyez admine .
-		//http.authorizeRequests().antMatchers(HttpMethod.POST,"/notes/**").hasAuthority("ADMIN");
+//		http.authorizeRequests().antMatchers(HttpMethod.POST,"/notes/**").hasAuthority("User");
 	
 		// tous les ressources de lapplication passeront par spring security
 		http.authorizeRequests().anyRequest().authenticated();
