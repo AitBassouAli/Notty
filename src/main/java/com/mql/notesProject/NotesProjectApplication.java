@@ -32,7 +32,7 @@ public class NotesProjectApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		accountService.AddUser(new User(null,"khachani","khachani"));
+//		accountService.AddUser(new User(null,"khachani","khachani"));
 		
 	}
 	
