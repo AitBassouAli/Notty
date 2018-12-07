@@ -20,7 +20,6 @@ public class ImplUserDetailService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("user avant :"+username);
 		User loadedUser = accountService.findByUsername(username);
 		if (loadedUser == null) {
 			throw new UsernameNotFoundException("user not found");
@@ -29,7 +28,6 @@ public class ImplUserDetailService implements UserDetailsService {
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("Admin"));
 		authorities.add(new SimpleGrantedAuthority("User"));
-		System.out.println("user apres :"+loadedUser.getUsername());
 		return new org.springframework.security.core.userdetails.User(loadedUser.getUsername(),
 				loadedUser.getPassword(), authorities);
 
