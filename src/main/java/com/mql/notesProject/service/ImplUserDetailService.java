@@ -25,6 +25,7 @@ public class ImplUserDetailService implements UserDetailsService {
 		if (loadedUser == null) {
 			throw new UsernameNotFoundException("user not found");
 		}
+		
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("Admin"));
 		authorities.add(new SimpleGrantedAuthority("User"));
