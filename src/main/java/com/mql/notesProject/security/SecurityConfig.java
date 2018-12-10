@@ -4,6 +4,7 @@ import javax.servlet.Filter;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,9 +15,13 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
+@CrossOrigin(origins="http://localhost:4200")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -39,9 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// http.formLogin().loginPage("/login");
 		//http.formLogin();
 		//donner les permission a la page login et register user
-		http.authorizeRequests().antMatchers("/login/**","/register/**").permitAll();
+		  http.authorizeRequests().antMatchers("/login","/","/register").permitAll();
         //en indique a spring que toutes les requetes Post il font que l'utilisateur soyez admine .
-//		http.authorizeRequests().antMatchers(HttpMethod.POST,"/notes/**").hasAuthority("User");
+        //http.authorizeRequests().antMatchers(HttpMethod.POST,"/notes/**").hasAuthority("User");
 	
 		// tous les ressources de lapplication passeront par spring security
 		http.authorizeRequests().anyRequest().authenticated();
@@ -49,5 +54,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.addFilterBefore(new JWTAuthorizationFiltre(),(Class<? extends Filter>) UsernamePasswordAuthenticationFilter.class);
 		super.configure(http);
 	}
-
 }

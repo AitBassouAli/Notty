@@ -17,7 +17,7 @@ import com.mql.notesProject.property.FileStorageProperties;
 import com.mql.notesProject.service.AccountService;
 
 
-@SpringBootApplication
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 @EnableConfigurationProperties({
 	FileStorageProperties.class
 })

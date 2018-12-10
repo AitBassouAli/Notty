@@ -31,13 +31,17 @@ public class JWTAuthorizationFiltre extends OncePerRequestFilter {
 		response.addHeader("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,"
 				+ "Access-Control-Request-Method,Access-Control-Request-Headers,Authorization");
 		response.addHeader("Access-Control-Expose-Headers",
-				"Access-Control-Allow-Origin," + "Authorization,Access-Control-Allow-Credentials");
-		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+				"Access-Control-Allow-Origin,Access-Control-Allow-Credentials,Authorization");
+
+		if (request.getMethod().equals("OPTIONS")) {
 			response.setStatus(HttpServletResponse.SC_OK);
 			response.addHeader("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,"
 					+ "Access-Control-Request-Method,Access-Control-Request-Headers,Authorization");
+			response.addHeader("Access-Control-Expose-Headers",
+					"Access-Control-Allow-Origin,Access-Control-Allow-Credentials,Authorization");
 
 		}
+		
 		String jwtToken = request.getHeader(SecurityConstants.HEADER_STRING);
 		System.out.println("*************" + jwtToken);
 		if (jwtToken == null || !jwtToken.startsWith(SecurityConstants.TOKEN_PREFIX)) {
