@@ -26,6 +26,7 @@ public class JWTAuthorizationFiltre extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		// on va permtter a angular d'envoyer les requetes a partir d'un domaine
 		// different
+		System.out.println("i am authorization");
 		System.out.println("*******************" + response.toString());
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,"
@@ -34,8 +35,8 @@ public class JWTAuthorizationFiltre extends OncePerRequestFilter {
 				"Access-Control-Allow-Origin," + "Authorization,Access-Control-Allow-Credentials");
 		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
 			response.setStatus(HttpServletResponse.SC_OK);
-			response.addHeader("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,"
-					+ "Access-Control-Request-Method,Access-Control-Request-Headers,Authorization");
+//			response.addHeader("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,"
+//					+ "Access-Control-Request-Method,Access-Control-Request-Headers,Authorization");
 
 		}
 		String jwtToken = request.getHeader(SecurityConstants.HEADER_STRING);
