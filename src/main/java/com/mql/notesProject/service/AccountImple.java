@@ -9,12 +9,11 @@ import com.mql.notesProject.entities.User;
 
 @Service
 public class AccountImple implements AccountService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
-	
-    
+
 	@Override
 	public User findByUsername(String username) {
 		// TODO Auto-generated method stub
@@ -23,12 +22,8 @@ public class AccountImple implements AccountService {
 
 	@Override
 	public User AddUser(User user) {
-		// TODO Auto-generated method stub
-		user.setPassword(bcryptPasswordEncoder.encode(user.getPassword()));
+//		user.setPassword(bcryptPasswordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
-	
-   
-	
 
 }

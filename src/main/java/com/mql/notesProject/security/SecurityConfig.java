@@ -37,6 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
+		http.cors().disable();
+		
 		//désactiver authentification basé sur les sessions 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		// en indique qu'on va utiliser le formulaire d'auhtentification de spring
@@ -45,13 +47,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//http.formLogin();
 		//donner les permission a la page login et register user
 		  http.authorizeRequests().antMatchers("/login","/","/register").permitAll();
+		
+		http.authorizeRequests().antMatchers("/**").permitAll();
+		http.authorizeRequests().antMatchers("/login/**","/register/**").permitAll();
         //en indique a spring que toutes les requetes Post il font que l'utilisateur soyez admine .
         //http.authorizeRequests().antMatchers(HttpMethod.POST,"/notes/**").hasAuthority("User");
 	
 		// tous les ressources de lapplication passeront par spring security
-		http.authorizeRequests().anyRequest().authenticated();
-		http.addFilter(new JWTAuthenticationFiltre(authenticationManager()));
-		http.addFilterBefore(new JWTAuthorizationFiltre(),(Class<? extends Filter>) UsernamePasswordAuthenticationFilter.class);
+//		http.authorizeRequests().anyRequest().authenticated();
+//		http.addFilter(new JWTAuthenticationFiltre(authenticationManager()));
+//		http.addFilterBefore(new JWTAuthorizationFiltre(),(Class<? extends Filter>) UsernamePasswordAuthenticationFilter.class);
 		super.configure(http);
 	}
 }

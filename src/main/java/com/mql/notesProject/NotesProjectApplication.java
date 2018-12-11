@@ -37,7 +37,8 @@ public class NotesProjectApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-//		accountService.AddUser(new User(null,"khachani","khachani"));
+//		accountService.AddUser(new User(null,"ahmed","khachani"));
+//		accountService.AddUser(new User(null,"ali","a"));
 //		noteRepository.save(new Note(null, "khachani Note", "premierTest", null, null, null, null));
 		
 		
